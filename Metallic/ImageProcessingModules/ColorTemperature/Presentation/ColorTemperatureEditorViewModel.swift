@@ -23,11 +23,11 @@ protocol ColorTemperatureEditorViewModel: ObservableObject {
     func onSliderEditingEndedHandler(isEnded: Bool) -> Void
 }
 
-final class ColorTemperatureEditorViewModelImpl<Units: BinaryFloatingPoint /*,
-                                                ChangeImageColorTemperatureUC: ChangeImageColorTemperatureUseCase*/>
+final class ColorTemperatureEditorViewModelImpl<Units: BinaryFloatingPoint,
+                                                ChangeImageColorTemperatureUC: ChangeImageColorTemperatureUseCase>
 where Units.Stride: BinaryFloatingPoint {
     
-    //private let changeImageColorTemperatureUseCase: ChangeImageColorTemperatureUC?
+    private let changeImageColorTemperatureUseCase: ChangeImageColorTemperatureUC
     private let numberFormatter: NumberFormatter = .init()
     
     @Published var sliderValue: Units = 0
@@ -54,7 +54,8 @@ where Units.Stride: BinaryFloatingPoint {
         .init(get: { self.sliderValue }, set: { self.sliderValue = $0 })
     }
     
-    init() {
+    init(_ changeImageColorTemperatureUseCase: ChangeImageColorTemperatureUC) {
+        self.changeImageColorTemperatureUseCase = changeImageColorTemperatureUseCase
         self.cgImagePlaceHolder = .cgImagePlaceholder
     }
     

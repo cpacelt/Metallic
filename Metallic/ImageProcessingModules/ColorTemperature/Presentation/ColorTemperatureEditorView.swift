@@ -42,7 +42,8 @@ extension ColorTemperatureEditorView: View {
 
 struct ColorTemperatureEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        let vm = ColorTemperatureEditorViewModelImpl<Float>()
+        let uc = ChangeImageColorTemperatureUseCaseImpl()
+        let vm = ColorTemperatureEditorViewModelImpl<Float, ChangeImageColorTemperatureUseCaseImpl>(uc)
         ColorTemperatureEditorView(vm: vm) {
             Text(vm.formatedSliderValue)
         }
