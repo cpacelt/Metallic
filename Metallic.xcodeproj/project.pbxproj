@@ -14,6 +14,7 @@
 		D6A2065427F854BC006A4F52 /* ColorTemperatureEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2065327F854BC006A4F52 /* ColorTemperatureEditorView.swift */; };
 		D6A2065627F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2065527F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift */; };
 		D6A2065827F85FEE006A4F52 /* AssetsManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2065727F85FEE006A4F52 /* AssetsManaging.swift */; };
+		D6A2065A27F86C7D006A4F52 /* ChangeImageColorTemperatureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2065927F86C7D006A4F52 /* ChangeImageColorTemperatureUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		D6A2065327F854BC006A4F52 /* ColorTemperatureEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTemperatureEditorView.swift; sourceTree = "<group>"; };
 		D6A2065527F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTemperatureEditorViewModel.swift; sourceTree = "<group>"; };
 		D6A2065727F85FEE006A4F52 /* AssetsManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsManaging.swift; sourceTree = "<group>"; };
+		D6A2065927F86C7D006A4F52 /* ChangeImageColorTemperatureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeImageColorTemperatureUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		D6A2065227F8540F006A4F52 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				D6A2065927F86C7D006A4F52 /* ChangeImageColorTemperatureUseCase.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				D6A2064327F84F65006A4F52 /* ContentView.swift in Sources */,
 				D6A2065827F85FEE006A4F52 /* AssetsManaging.swift in Sources */,
 				D6A2065427F854BC006A4F52 /* ColorTemperatureEditorView.swift in Sources */,
+				D6A2065A27F86C7D006A4F52 /* ChangeImageColorTemperatureUseCase.swift in Sources */,
 				D6A2064127F84F65006A4F52 /* MetallicApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

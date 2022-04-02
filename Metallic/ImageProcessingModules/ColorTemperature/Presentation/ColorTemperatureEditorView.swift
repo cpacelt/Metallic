@@ -7,45 +7,44 @@
 
 import SwiftUI
 
-struct ColorTemperatureEditorView<SliderLabel: View>
- {
+struct ColorTemperatureEditorView<ViewModel: ColorTemperatureEditorViewModel, SliderLabel: View>
+{
+    @ObservedObject var vm: ViewModel
     let sliderLabel: () -> SliderLabel
-    @EnvironmentObject var colorTemperatureEditorVM: ColorTemperatureEditorViewModel<Float>
 }
 
 extension ColorTemperatureEditorView: View {
     var body: some View {
         VStack {
-            Text(colorTemperatureEditorVM.headerTitle)
+            Text(vm.headerTitle)
                 .font(.title)
                 .padding()
             
-            Image(decorative: colorTemperatureEditorVM.image,
-                  scale: colorTemperatureEditorVM.imageScale)
+            Image(decorative: vm.image,
+                  scale: vm.imageScale)
                 .resizable()
                 .scaledToFit()
                 .padding()
             
             
-            Slider(value: $colorTemperatureEditorVM.sliderValue,
-                   in: colorTemperatureEditorVM.valueRagnge,
+            Slider(value: vm.sliderValuePublisher,
+                   in: vm.valueRange,
                    label: sliderLabel, // SwiftUI bug, lable can not showed
-                   minimumValueLabel: { Text(colorTemperatureEditorVM.sliderMinTitle) },
-                   maximumValueLabel: { Text(colorTemperatureEditorVM.sliderMaxTitle) },
-                   onEditingChanged: colorTemperatureEditorVM.onSliderEditingEndedHandler)
+                   minimumValueLabel: { Text(vm.sliderMinTitle) },
+                   maximumValueLabel: { Text(vm.sliderMaxTitle) },
+                   onEditingChanged: vm.onSliderEditingEndedHandler)
                 .padding()
             
-            Text(colorTemperatureEditorVM.formatedSliderValue)
+            Text(vm.formatedSliderValue)
         }
     }
 }
 
 struct ColorTemperatureEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        let vm = ColorTemperatureEditorViewModel<Float>()
-        ColorTemperatureEditorView(sliderLabel: {
-            Text("\(vm.sliderValue)")
-        })
-            .environmentObject(vm)
+        let vm = ColorTemperatureEditorViewModelImpl<Float>()
+        ColorTemperatureEditorView(vm: vm) {
+            Text(vm.formatedSliderValue)
+        }
     }
 }
