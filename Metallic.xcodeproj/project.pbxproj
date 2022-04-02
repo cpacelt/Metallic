@@ -11,6 +11,9 @@
 		D6A2064327F84F65006A4F52 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2064227F84F65006A4F52 /* ContentView.swift */; };
 		D6A2064527F84F68006A4F52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6A2064427F84F68006A4F52 /* Assets.xcassets */; };
 		D6A2064827F84F68006A4F52 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6A2064727F84F68006A4F52 /* Preview Assets.xcassets */; };
+		D6A2065427F854BC006A4F52 /* ColorTemperatureEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2065327F854BC006A4F52 /* ColorTemperatureEditorView.swift */; };
+		D6A2065627F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2065527F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift */; };
+		D6A2065827F85FEE006A4F52 /* AssetsManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2065727F85FEE006A4F52 /* AssetsManaging.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		D6A2064227F84F65006A4F52 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D6A2064427F84F68006A4F52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6A2064727F84F68006A4F52 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D6A2065327F854BC006A4F52 /* ColorTemperatureEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTemperatureEditorView.swift; sourceTree = "<group>"; };
+		D6A2065527F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTemperatureEditorViewModel.swift; sourceTree = "<group>"; };
+		D6A2065727F85FEE006A4F52 /* AssetsManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsManaging.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +57,11 @@
 		D6A2063F27F84F65006A4F52 /* Metallic */ = {
 			isa = PBXGroup;
 			children = (
+				D6A2064F27F852E2006A4F52 /* ImageProcessingModules */,
+				D6A2064E27F85242006A4F52 /* MetalStack */,
 				D6A2064027F84F65006A4F52 /* MetallicApp.swift */,
 				D6A2064227F84F65006A4F52 /* ContentView.swift */,
+				D6A2065727F85FEE006A4F52 /* AssetsManaging.swift */,
 				D6A2064427F84F68006A4F52 /* Assets.xcassets */,
 				D6A2064627F84F68006A4F52 /* Preview Content */,
 			);
@@ -65,6 +74,46 @@
 				D6A2064727F84F68006A4F52 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D6A2064E27F85242006A4F52 /* MetalStack */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MetalStack;
+			sourceTree = "<group>";
+		};
+		D6A2064F27F852E2006A4F52 /* ImageProcessingModules */ = {
+			isa = PBXGroup;
+			children = (
+				D6A2065027F85389006A4F52 /* ColorTemperature */,
+			);
+			path = ImageProcessingModules;
+			sourceTree = "<group>";
+		};
+		D6A2065027F85389006A4F52 /* ColorTemperature */ = {
+			isa = PBXGroup;
+			children = (
+				D6A2065227F8540F006A4F52 /* Domain */,
+				D6A2065127F85398006A4F52 /* Presentation */,
+			);
+			path = ColorTemperature;
+			sourceTree = "<group>";
+		};
+		D6A2065127F85398006A4F52 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				D6A2065327F854BC006A4F52 /* ColorTemperatureEditorView.swift */,
+				D6A2065527F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		D6A2065227F8540F006A4F52 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +186,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6A2065627F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift in Sources */,
 				D6A2064327F84F65006A4F52 /* ContentView.swift in Sources */,
+				D6A2065827F85FEE006A4F52 /* AssetsManaging.swift in Sources */,
+				D6A2065427F854BC006A4F52 /* ColorTemperatureEditorView.swift in Sources */,
 				D6A2064127F84F65006A4F52 /* MetallicApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
