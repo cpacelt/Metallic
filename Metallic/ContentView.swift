@@ -6,11 +6,29 @@
 //
 
 import SwiftUI
+import MetalKit
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        //MARK: Testing
+        let device = MTLCreateSystemDefaultDevice()!
+        let library = try? device.makeDefaultLibrary(bundle: .main)
+        
+        let renderer = try? TextureRenderer(device: device)
+        let processor = try? ColorTemperatureProcessor(library: library!)
+        let transformer = TextureTransformer(device: device)
+        
+        let uc = ChangeImageColorTemperatureUseCaseImpl(renderer: renderer!,
+                                                        processor: processor!,
+                                                        transformer: transformer)
+        
+        let vm = ColorTemperatureEditorViewModelImpl<ChangeImageColorTemperatureUseCaseImpl>(uc)
+        ColorTemperatureEditorView(vm: vm) {
+            Text(vm.formatedSliderValue)
+        }
+        
+        
     }
 }
 

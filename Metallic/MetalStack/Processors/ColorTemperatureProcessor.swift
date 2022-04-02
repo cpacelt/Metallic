@@ -36,29 +36,35 @@ final class ColorTemperatureProcessor {
     internal let function: MTLFunction
     private var deviceSupportsNonuniformThreadgroups: Bool
     
-    init?(library: MTLLibrary) {
+    init(library: MTLLibrary) throws {
         self.library = library
         self.deviceSupportsNonuniformThreadgroups = library.device.supportsFeatureSet(.iOS_GPUFamily4_v1)
         self.constantValues = MTLFunctionConstantValues()
         self.constantValues.setConstantValue(&deviceSupportsNonuniformThreadgroups,
                                              type: .bool,
                                              index: .index(for: .deviceSupportsNonuniformThreadgroups))
-        guard
-            let function = try? library.makeFunction(name: .colorTemperatureProcessorsShaderName,
-                                                     constantValues: constantValues),
-            let pipelineState = try? library.device.makeComputePipelineState(function: function)
-        else { return nil }
+        
+        guard let function = try? library.makeFunction(name: .colorTemperatureProcessorsShaderName,
+                                                       constantValues: constantValues)
+        else { throw TextureProcessingError.cantMakeFunction }
+        
+        guard let pipelineState = try? library.device.makeComputePipelineState(function: function)
+        else { throw TextureProcessingError.cantMakeComputePipelineState }
         
         self.function = function
         self.pipelineState = pipelineState
     }
 }
 
+//MARK: Encode function
 extension ColorTemperatureProcessor: TextureProcessor {
     
-    func encode(source: MTLTexture,
-                destination: MTLTexture,
-                in commandBuffer: MTLCommandBuffer) {
+    func encode(source: MTLTexture, destination: MTLTexture, in commandBuffer: MTLCommandBuffer) {
+        
+        let gridSize = MTLSize(width: source.width, height: source.height, depth: 1)
+        let threadGroupWidth = self.pipelineState.threadExecutionWidth
+        let threadGroupHeight = self.pipelineState.maxTotalThreadsPerThreadgroup / threadGroupWidth
+        let threadGroupSize = MTLSize(width: threadGroupWidth, height: threadGroupHeight, depth: 1)
         
         guard let encoder = commandBuffer.makeComputeCommandEncoder()
         else { return }
@@ -66,34 +72,18 @@ extension ColorTemperatureProcessor: TextureProcessor {
         encoder.setTexture(source, index: 0)
         encoder.setTexture(destination, index: 1)
         
-        encoder.setBytes(&self.temperature,
-                         length: MemoryLayout<Float>.stride,
-                         index: 0)
-        encoder.setBytes(&self.tint,
-                         length: MemoryLayout<Float>.stride,
-                         index: 1)
-        
-        let gridSize = MTLSize(width: source.width,
-                               height: source.height,
-                               depth: 1)
-        
-        let threadGroupWidth = self.pipelineState.threadExecutionWidth
-        let threadGroupHeight = self.pipelineState.maxTotalThreadsPerThreadgroup / threadGroupWidth
-        let threadGroupSize = MTLSize(width: threadGroupWidth,
-                                      height: threadGroupHeight,
-                                      depth: 1)
+        encoder.setBytes(&self.temperature, length: MemoryLayout<Float>.stride, index: 0)
+        encoder.setBytes(&self.tint, length: MemoryLayout<Float>.stride, index: 1)
         
         encoder.setComputePipelineState(self.pipelineState)
         
         if self.deviceSupportsNonuniformThreadgroups {
-            encoder.dispatchThreads(gridSize,
-                                    threadsPerThreadgroup: threadGroupSize)
+            encoder.dispatchThreads(gridSize, threadsPerThreadgroup: threadGroupSize)
         } else {
-            let threadGroupCount = MTLSize(width: (gridSize.width + threadGroupSize.width - 1) / threadGroupSize.width,
-                                           height: (gridSize.height + threadGroupSize.height - 1) / threadGroupSize.height,
-                                           depth: 1)
-            encoder.dispatchThreadgroups(threadGroupCount,
-                                         threadsPerThreadgroup: threadGroupSize)
+            let width = (gridSize.width + threadGroupSize.width - 1) / threadGroupSize.width
+            let height = (gridSize.height + threadGroupSize.height - 1) / threadGroupSize.height
+            let threadGroupCount = MTLSize(width: width, height: height, depth: 1)
+            encoder.dispatchThreadgroups(threadGroupCount, threadsPerThreadgroup: threadGroupSize)
         }
         
         encoder.endEncoding()

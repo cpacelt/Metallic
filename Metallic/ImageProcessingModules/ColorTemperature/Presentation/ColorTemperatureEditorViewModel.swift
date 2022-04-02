@@ -7,15 +7,14 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 // MARK: ColorTemperatureEditorViewModel protocol
 protocol ColorTemperatureEditorViewModel: ObservableObject {
-    associatedtype Units: BinaryFloatingPoint where Units.Stride: BinaryFloatingPoint
-    
     var image: CGImage { get }
     var imageScale: CGFloat { get }
-    var valueRange: ClosedRange<Units> { get }
-    var sliderValuePublisher: Binding<Units> { get }
+    var valueRange: ClosedRange<Float> { get }
+    var sliderValuePublisher: Binding<Float> { get }
     var headerTitle: String { get }
     var sliderMinTitle: String { get }
     var sliderMaxTitle: String { get }
@@ -25,8 +24,7 @@ protocol ColorTemperatureEditorViewModel: ObservableObject {
 }
 
 // MARK: ColorTemperatureEditorViewModelImpl
-final class ColorTemperatureEditorViewModelImpl<Units: BinaryFloatingPoint, ChangeImageColorTemperatureUC: ChangeImageColorTemperatureUseCase>
-where Units.Stride: BinaryFloatingPoint {
+final class ColorTemperatureEditorViewModelImpl<ChangeImageColorTemperatureUC: ChangeImageColorTemperatureUseCase> {
     
     //MARK: UseCases
     private let changeImageColorTemperatureUseCase: ChangeImageColorTemperatureUC
@@ -34,9 +32,9 @@ where Units.Stride: BinaryFloatingPoint {
     
     @Published private var cgImage: CGImage?
     @Published private var cgImagePlaceHolder: CGImage
-    @Published private var sliderValue: Units = 0
+    @Published private var sliderValue: Float = 0
     @Published private(set) var imageScale: CGFloat = 1.0
-    @Published private(set) var valueRange: ClosedRange<Units> = 0...100
+    @Published private(set) var valueRange: ClosedRange<Float> = 0...10
     
     @Published private(set) var headerTitle: String = "Let's go!\nChange the picture's  color temperature!"
     @Published private(set) var sliderMinTitle: String = "❄️"
@@ -47,11 +45,11 @@ where Units.Stride: BinaryFloatingPoint {
     }
     
     var formatedSliderValue: String {
-        let nsNumber = NSNumber(value: sliderValue as! Float)
+        let nsNumber = NSNumber(value: sliderValue)
         return numberFormatter.string(from: nsNumber) ?? "0.0"
     }
     
-    var sliderValuePublisher: Binding<Units> {
+    var sliderValuePublisher: Binding<Float> {
         .init(get: { self.sliderValue },
               set: { newValue in self.sliderValue = newValue })
     }
@@ -60,14 +58,21 @@ where Units.Stride: BinaryFloatingPoint {
     init(_ changeImageColorTemperatureUseCase: ChangeImageColorTemperatureUC) {
         self.changeImageColorTemperatureUseCase = changeImageColorTemperatureUseCase
         self.cgImagePlaceHolder = .cgImagePlaceholder
+        
+        self.changeImageColorTemperatureUseCase
+            .publisher()
+            .replaceError(with: cgImagePlaceHolder)
+            .receive(on: RunLoop.main)
+            .assign(to: &$cgImage)
     }
     
 }
 
 // MARK: ColorTemperatureEditorViewModelImpl extension
 extension ColorTemperatureEditorViewModelImpl: ColorTemperatureEditorViewModel {
+    
     func onSliderEditingEndedHandler(isEnded: Bool) {
-        return
+        changeImageColorTemperatureUseCase.execute(image: cgImagePlaceHolder, value: sliderValue)
     }
 }
 

@@ -18,6 +18,9 @@
 		D6A2065C27F880E1006A4F52 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D6A2065B27F880E1006A4F52 /* Shaders.metal */; };
 		D6A2066127F89116006A4F52 /* ColorTemperatureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2066027F89116006A4F52 /* ColorTemperatureProcessor.swift */; };
 		D6A2066327F89EF3006A4F52 /* TextureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2066227F89EF3006A4F52 /* TextureProcessor.swift */; };
+		D6A2066827F8A108006A4F52 /* TextureTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2066727F8A108006A4F52 /* TextureTransformer.swift */; };
+		D6A2066A27F8AC3E006A4F52 /* TextureRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2066927F8AC3E006A4F52 /* TextureRenderer.swift */; };
+		D6A2066C27F8ACAC006A4F52 /* TextureProcessingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2066B27F8ACAC006A4F52 /* TextureProcessingError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		D6A2065D27F88BE0006A4F52 /* ColorConvertion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorConvertion.h; sourceTree = "<group>"; };
 		D6A2066027F89116006A4F52 /* ColorTemperatureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTemperatureProcessor.swift; sourceTree = "<group>"; };
 		D6A2066227F89EF3006A4F52 /* TextureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureProcessor.swift; sourceTree = "<group>"; };
+		D6A2066727F8A108006A4F52 /* TextureTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureTransformer.swift; sourceTree = "<group>"; };
+		D6A2066927F8AC3E006A4F52 /* TextureRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureRenderer.swift; sourceTree = "<group>"; };
+		D6A2066B27F8ACAC006A4F52 /* TextureProcessingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureProcessingError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,7 @@
 		D6A2064E27F85242006A4F52 /* MetalStack */ = {
 			isa = PBXGroup;
 			children = (
+				D6A2066627F8A0EE006A4F52 /* Support */,
 				D6A2065F27F890D9006A4F52 /* Core */,
 				D6A2066427F89F11006A4F52 /* Processors */,
 				D6A2065E27F890CB006A4F52 /* Shaders */,
@@ -142,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				D6A2066227F89EF3006A4F52 /* TextureProcessor.swift */,
+				D6A2066927F8AC3E006A4F52 /* TextureRenderer.swift */,
+				D6A2066B27F8ACAC006A4F52 /* TextureProcessingError.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -160,6 +169,14 @@
 				D6A2065727F85FEE006A4F52 /* AssetsManaging.swift */,
 			);
 			path = SupportCode;
+			sourceTree = "<group>";
+		};
+		D6A2066627F8A0EE006A4F52 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				D6A2066727F8A108006A4F52 /* TextureTransformer.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,13 +251,16 @@
 			files = (
 				D6A2066127F89116006A4F52 /* ColorTemperatureProcessor.swift in Sources */,
 				D6A2065627F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift in Sources */,
+				D6A2066A27F8AC3E006A4F52 /* TextureRenderer.swift in Sources */,
 				D6A2066327F89EF3006A4F52 /* TextureProcessor.swift in Sources */,
 				D6A2065C27F880E1006A4F52 /* Shaders.metal in Sources */,
 				D6A2064327F84F65006A4F52 /* ContentView.swift in Sources */,
 				D6A2065827F85FEE006A4F52 /* AssetsManaging.swift in Sources */,
+				D6A2066827F8A108006A4F52 /* TextureTransformer.swift in Sources */,
 				D6A2065427F854BC006A4F52 /* ColorTemperatureEditorView.swift in Sources */,
 				D6A2065A27F86C7D006A4F52 /* ChangeImageColorTemperatureUseCase.swift in Sources */,
 				D6A2064127F84F65006A4F52 /* MetallicApp.swift in Sources */,
+				D6A2066C27F8ACAC006A4F52 /* TextureProcessingError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -42,12 +42,12 @@ extension ColorTemperatureEditorView: View {
 }
 
 //MARK: Preview
-struct ColorTemperatureEditorView_Previews: PreviewProvider {
-    static var previews: some View {
-        let uc = ChangeImageColorTemperatureUseCaseImpl()
-        let vm = ColorTemperatureEditorViewModelImpl<Float, ChangeImageColorTemperatureUseCaseImpl>(uc)
-        ColorTemperatureEditorView(vm: vm) {
-            Text(vm.formatedSliderValue)
-        }
-    }
-}
+//struct ColorTemperatureEditorView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let uc = ChangeImageColorTemperatureUseCaseImpl()
+//        let vm = ColorTemperatureEditorViewModelImpl<Float, ChangeImageColorTemperatureUseCaseImpl>(uc)
+//        ColorTemperatureEditorView(vm: vm) {
+//            Text(vm.formatedSliderValue)
+//        }
+//    }
+//}
