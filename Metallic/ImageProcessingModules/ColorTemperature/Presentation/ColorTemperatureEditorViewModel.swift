@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// MARK: ColorTemperatureEditorViewModel protocol
 protocol ColorTemperatureEditorViewModel: ObservableObject {
     associatedtype Units: BinaryFloatingPoint where Units.Stride: BinaryFloatingPoint
     
@@ -23,17 +24,17 @@ protocol ColorTemperatureEditorViewModel: ObservableObject {
     func onSliderEditingEndedHandler(isEnded: Bool) -> Void
 }
 
-final class ColorTemperatureEditorViewModelImpl<Units: BinaryFloatingPoint,
-                                                ChangeImageColorTemperatureUC: ChangeImageColorTemperatureUseCase>
+// MARK: ColorTemperatureEditorViewModelImpl
+final class ColorTemperatureEditorViewModelImpl<Units: BinaryFloatingPoint, ChangeImageColorTemperatureUC: ChangeImageColorTemperatureUseCase>
 where Units.Stride: BinaryFloatingPoint {
     
+    //MARK: UseCases
     private let changeImageColorTemperatureUseCase: ChangeImageColorTemperatureUC
     private let numberFormatter: NumberFormatter = .init()
     
-    @Published var sliderValue: Units = 0
-    
     @Published private var cgImage: CGImage?
     @Published private var cgImagePlaceHolder: CGImage
+    @Published private var sliderValue: Units = 0
     @Published private(set) var imageScale: CGFloat = 1.0
     @Published private(set) var valueRange: ClosedRange<Units> = 0...100
     
@@ -51,9 +52,11 @@ where Units.Stride: BinaryFloatingPoint {
     }
     
     var sliderValuePublisher: Binding<Units> {
-        .init(get: { self.sliderValue }, set: { self.sliderValue = $0 })
+        .init(get: { self.sliderValue },
+              set: { newValue in self.sliderValue = newValue })
     }
     
+    // MARK: Init
     init(_ changeImageColorTemperatureUseCase: ChangeImageColorTemperatureUC) {
         self.changeImageColorTemperatureUseCase = changeImageColorTemperatureUseCase
         self.cgImagePlaceHolder = .cgImagePlaceholder
@@ -61,6 +64,7 @@ where Units.Stride: BinaryFloatingPoint {
     
 }
 
+// MARK: ColorTemperatureEditorViewModelImpl extension
 extension ColorTemperatureEditorViewModelImpl: ColorTemperatureEditorViewModel {
     func onSliderEditingEndedHandler(isEnded: Bool) {
         return

@@ -15,6 +15,9 @@
 		D6A2065627F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2065527F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift */; };
 		D6A2065827F85FEE006A4F52 /* AssetsManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2065727F85FEE006A4F52 /* AssetsManaging.swift */; };
 		D6A2065A27F86C7D006A4F52 /* ChangeImageColorTemperatureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2065927F86C7D006A4F52 /* ChangeImageColorTemperatureUseCase.swift */; };
+		D6A2065C27F880E1006A4F52 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D6A2065B27F880E1006A4F52 /* Shaders.metal */; };
+		D6A2066127F89116006A4F52 /* ColorTemperatureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2066027F89116006A4F52 /* ColorTemperatureProcessor.swift */; };
+		D6A2066327F89EF3006A4F52 /* TextureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2066227F89EF3006A4F52 /* TextureProcessor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,10 @@
 		D6A2065527F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTemperatureEditorViewModel.swift; sourceTree = "<group>"; };
 		D6A2065727F85FEE006A4F52 /* AssetsManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsManaging.swift; sourceTree = "<group>"; };
 		D6A2065927F86C7D006A4F52 /* ChangeImageColorTemperatureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeImageColorTemperatureUseCase.swift; sourceTree = "<group>"; };
+		D6A2065B27F880E1006A4F52 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		D6A2065D27F88BE0006A4F52 /* ColorConvertion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorConvertion.h; sourceTree = "<group>"; };
+		D6A2066027F89116006A4F52 /* ColorTemperatureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTemperatureProcessor.swift; sourceTree = "<group>"; };
+		D6A2066227F89EF3006A4F52 /* TextureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +70,7 @@
 				D6A2064E27F85242006A4F52 /* MetalStack */,
 				D6A2064027F84F65006A4F52 /* MetallicApp.swift */,
 				D6A2064227F84F65006A4F52 /* ContentView.swift */,
-				D6A2065727F85FEE006A4F52 /* AssetsManaging.swift */,
+				D6A2066527F89FD2006A4F52 /* SupportCode */,
 				D6A2064427F84F68006A4F52 /* Assets.xcassets */,
 				D6A2064627F84F68006A4F52 /* Preview Content */,
 			);
@@ -81,6 +88,9 @@
 		D6A2064E27F85242006A4F52 /* MetalStack */ = {
 			isa = PBXGroup;
 			children = (
+				D6A2065F27F890D9006A4F52 /* Core */,
+				D6A2066427F89F11006A4F52 /* Processors */,
+				D6A2065E27F890CB006A4F52 /* Shaders */,
 			);
 			path = MetalStack;
 			sourceTree = "<group>";
@@ -117,6 +127,39 @@
 				D6A2065927F86C7D006A4F52 /* ChangeImageColorTemperatureUseCase.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		D6A2065E27F890CB006A4F52 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				D6A2065B27F880E1006A4F52 /* Shaders.metal */,
+				D6A2065D27F88BE0006A4F52 /* ColorConvertion.h */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		D6A2065F27F890D9006A4F52 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D6A2066227F89EF3006A4F52 /* TextureProcessor.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		D6A2066427F89F11006A4F52 /* Processors */ = {
+			isa = PBXGroup;
+			children = (
+				D6A2066027F89116006A4F52 /* ColorTemperatureProcessor.swift */,
+			);
+			path = Processors;
+			sourceTree = "<group>";
+		};
+		D6A2066527F89FD2006A4F52 /* SupportCode */ = {
+			isa = PBXGroup;
+			children = (
+				D6A2065727F85FEE006A4F52 /* AssetsManaging.swift */,
+			);
+			path = SupportCode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,7 +232,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6A2066127F89116006A4F52 /* ColorTemperatureProcessor.swift in Sources */,
 				D6A2065627F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift in Sources */,
+				D6A2066327F89EF3006A4F52 /* TextureProcessor.swift in Sources */,
+				D6A2065C27F880E1006A4F52 /* Shaders.metal in Sources */,
 				D6A2064327F84F65006A4F52 /* ContentView.swift in Sources */,
 				D6A2065827F85FEE006A4F52 /* AssetsManaging.swift in Sources */,
 				D6A2065427F854BC006A4F52 /* ColorTemperatureEditorView.swift in Sources */,

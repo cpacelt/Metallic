@@ -7,12 +7,14 @@
 
 import SwiftUI
 
+// MARK: ColorTemperatureEditorView
 struct ColorTemperatureEditorView<ViewModel: ColorTemperatureEditorViewModel, SliderLabel: View>
 {
     @ObservedObject var vm: ViewModel
     let sliderLabel: () -> SliderLabel
 }
 
+// MARK: View extension
 extension ColorTemperatureEditorView: View {
     var body: some View {
         VStack {
@@ -25,7 +27,6 @@ extension ColorTemperatureEditorView: View {
                 .resizable()
                 .scaledToFit()
                 .padding()
-            
             
             Slider(value: vm.sliderValuePublisher,
                    in: vm.valueRange,
@@ -40,6 +41,7 @@ extension ColorTemperatureEditorView: View {
     }
 }
 
+//MARK: Preview
 struct ColorTemperatureEditorView_Previews: PreviewProvider {
     static var previews: some View {
         let uc = ChangeImageColorTemperatureUseCaseImpl()
