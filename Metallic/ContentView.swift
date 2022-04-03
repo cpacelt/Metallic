@@ -16,17 +16,28 @@ struct ContentView: View {
         let library = try? device.makeDefaultLibrary(bundle: .main)
         
         let renderer = try? TextureRenderer(device: device)
-        let processor = try? ColorTemperatureProcessor(library: library!)
+        //let processor = try? ColorTemperatureProcessor(library: library!)
+        let processor = try? GaussianBlurProcessor(library: library!)
         let transformer = TextureTransformer(device: device)
         
-        let uc = ChangeImageColorTemperatureUseCaseImpl(renderer: renderer!,
-                                                        processor: processor!,
-                                                        transformer: transformer)
+//        let uc = ChangeImageColorTemperatureUseCaseImpl(renderer: renderer!,
+//                                                        processor: processor!,
+//                                                        transformer: transformer)
         
-        let vm = ColorTemperatureEditorViewModelImpl<ChangeImageColorTemperatureUseCaseImpl>(uc)
-        ColorTemperatureEditorView(vm: vm) {
-            Text(vm.formatedSliderValue)
-        }
+//        let uc = ApplyGaussianBlurUseCaseImpl(renderer: renderer!,
+//                                                        processor: processor!,
+//                                                        transformer: transformer)
+//
+//       // let vm = ColorTemperatureEditorViewModelImpl<ChangeImageColorTemperatureUseCaseImpl>(uc)
+//        let vm = ColorTemperatureEditorViewModelImpl(uc)
+//        ColorTemperatureEditorView(vm: vm) {
+//            Text(vm.formatedSliderValue)
+//        }
+        
+        let vm = GaussianBlurViewModelImpl()
+        GaussianBlurView(vm: vm, sliderLabel: {
+            EmptyView()
+        })
         
         
     }

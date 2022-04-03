@@ -12,7 +12,6 @@ enum TextureProcessingError: Error {
     case cgImageCreationFailed
     case textureCreationFailed
     case commandQueueCreationFailed
-    //case redrawFailed
     case cantMakeFunction
     case cantMakeComputePipelineState
     case cantMakeCommandEncoder

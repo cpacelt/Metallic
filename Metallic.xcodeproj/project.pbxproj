@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D681C51C27F97FE500F2DA85 /* FewImagesFewSlidersImageProcessingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681C51B27F97FE500F2DA85 /* FewImagesFewSlidersImageProcessingViewModel.swift */; };
+		D681C51E27F981B100F2DA85 /* GeneralImageProcessigViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681C51D27F981B100F2DA85 /* GeneralImageProcessigViewModelImpl.swift */; };
+		D681C52027F9913000F2DA85 /* GaussianBlurViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681C51F27F9913000F2DA85 /* GaussianBlurViewModel.swift */; };
+		D681C52227F994C700F2DA85 /* GaussianBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681C52127F994C700F2DA85 /* GaussianBlurView.swift */; };
+		D681C52527F99D8E00F2DA85 /* FewImagesFewSlidersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681C52427F99D8E00F2DA85 /* FewImagesFewSlidersView.swift */; };
 		D6A2064127F84F65006A4F52 /* MetallicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2064027F84F65006A4F52 /* MetallicApp.swift */; };
 		D6A2064327F84F65006A4F52 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2064227F84F65006A4F52 /* ContentView.swift */; };
 		D6A2064527F84F68006A4F52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6A2064427F84F68006A4F52 /* Assets.xcassets */; };
@@ -21,9 +26,16 @@
 		D6A2066827F8A108006A4F52 /* TextureTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2066727F8A108006A4F52 /* TextureTransformer.swift */; };
 		D6A2066A27F8AC3E006A4F52 /* TextureRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2066927F8AC3E006A4F52 /* TextureRenderer.swift */; };
 		D6A2066C27F8ACAC006A4F52 /* TextureProcessingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2066B27F8ACAC006A4F52 /* TextureProcessingError.swift */; };
+		D6A2067027F8F783006A4F52 /* GaussianBlurProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2066F27F8F783006A4F52 /* GaussianBlurProcessor.swift */; };
+		D6A2067227F8FB89006A4F52 /* ApplyGaussianBlurUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2067127F8FB89006A4F52 /* ApplyGaussianBlurUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D681C51B27F97FE500F2DA85 /* FewImagesFewSlidersImageProcessingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FewImagesFewSlidersImageProcessingViewModel.swift; sourceTree = "<group>"; };
+		D681C51D27F981B100F2DA85 /* GeneralImageProcessigViewModelImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralImageProcessigViewModelImpl.swift; sourceTree = "<group>"; };
+		D681C51F27F9913000F2DA85 /* GaussianBlurViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GaussianBlurViewModel.swift; path = Metallic/ImageProcessingModules/GaussianBlur/GaussianBlurViewModel.swift; sourceTree = SOURCE_ROOT; };
+		D681C52127F994C700F2DA85 /* GaussianBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaussianBlurView.swift; sourceTree = "<group>"; };
+		D681C52427F99D8E00F2DA85 /* FewImagesFewSlidersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FewImagesFewSlidersView.swift; sourceTree = "<group>"; };
 		D6A2063D27F84F65006A4F52 /* Metallic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Metallic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A2064027F84F65006A4F52 /* MetallicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetallicApp.swift; sourceTree = "<group>"; };
 		D6A2064227F84F65006A4F52 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +52,8 @@
 		D6A2066727F8A108006A4F52 /* TextureTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureTransformer.swift; sourceTree = "<group>"; };
 		D6A2066927F8AC3E006A4F52 /* TextureRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureRenderer.swift; sourceTree = "<group>"; };
 		D6A2066B27F8ACAC006A4F52 /* TextureProcessingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureProcessingError.swift; sourceTree = "<group>"; };
+		D6A2066F27F8F783006A4F52 /* GaussianBlurProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaussianBlurProcessor.swift; sourceTree = "<group>"; };
+		D6A2067127F8FB89006A4F52 /* ApplyGaussianBlurUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyGaussianBlurUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +67,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D681C51727F97D0D00F2DA85 /* GaussianBlur */ = {
+			isa = PBXGroup;
+			children = (
+				D681C51927F97D2500F2DA85 /* Presentation */,
+				D681C51827F97D1F00F2DA85 /* Domain */,
+			);
+			path = GaussianBlur;
+			sourceTree = "<group>";
+		};
+		D681C51827F97D1F00F2DA85 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				D6A2067127F8FB89006A4F52 /* ApplyGaussianBlurUseCase.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		D681C51927F97D2500F2DA85 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				D681C51F27F9913000F2DA85 /* GaussianBlurViewModel.swift */,
+				D681C52127F994C700F2DA85 /* GaussianBlurView.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		D681C51A27F97FB400F2DA85 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D681C52327F99D5700F2DA85 /* FewImagesFewSlidersModule */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		D681C52327F99D5700F2DA85 /* FewImagesFewSlidersModule */ = {
+			isa = PBXGroup;
+			children = (
+				D681C51D27F981B100F2DA85 /* GeneralImageProcessigViewModelImpl.swift */,
+				D681C51B27F97FE500F2DA85 /* FewImagesFewSlidersImageProcessingViewModel.swift */,
+				D681C52427F99D8E00F2DA85 /* FewImagesFewSlidersView.swift */,
+			);
+			path = FewImagesFewSlidersModule;
+			sourceTree = "<group>";
+		};
 		D6A2063427F84F65006A4F52 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +163,8 @@
 		D6A2064F27F852E2006A4F52 /* ImageProcessingModules */ = {
 			isa = PBXGroup;
 			children = (
+				D681C51A27F97FB400F2DA85 /* Core */,
+				D681C51727F97D0D00F2DA85 /* GaussianBlur */,
 				D6A2065027F85389006A4F52 /* ColorTemperature */,
 			);
 			path = ImageProcessingModules;
@@ -148,9 +208,9 @@
 		D6A2065F27F890D9006A4F52 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				D6A2066727F8A108006A4F52 /* TextureTransformer.swift */,
 				D6A2066227F89EF3006A4F52 /* TextureProcessor.swift */,
 				D6A2066927F8AC3E006A4F52 /* TextureRenderer.swift */,
-				D6A2066B27F8ACAC006A4F52 /* TextureProcessingError.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -159,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				D6A2066027F89116006A4F52 /* ColorTemperatureProcessor.swift */,
+				D6A2066F27F8F783006A4F52 /* GaussianBlurProcessor.swift */,
 			);
 			path = Processors;
 			sourceTree = "<group>";
@@ -174,7 +235,7 @@
 		D6A2066627F8A0EE006A4F52 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				D6A2066727F8A108006A4F52 /* TextureTransformer.swift */,
+				D6A2066B27F8ACAC006A4F52 /* TextureProcessingError.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -249,17 +310,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6A2067227F8FB89006A4F52 /* ApplyGaussianBlurUseCase.swift in Sources */,
+				D681C51E27F981B100F2DA85 /* GeneralImageProcessigViewModelImpl.swift in Sources */,
 				D6A2066127F89116006A4F52 /* ColorTemperatureProcessor.swift in Sources */,
 				D6A2065627F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift in Sources */,
+				D681C52227F994C700F2DA85 /* GaussianBlurView.swift in Sources */,
 				D6A2066A27F8AC3E006A4F52 /* TextureRenderer.swift in Sources */,
 				D6A2066327F89EF3006A4F52 /* TextureProcessor.swift in Sources */,
+				D681C52027F9913000F2DA85 /* GaussianBlurViewModel.swift in Sources */,
 				D6A2065C27F880E1006A4F52 /* Shaders.metal in Sources */,
 				D6A2064327F84F65006A4F52 /* ContentView.swift in Sources */,
 				D6A2065827F85FEE006A4F52 /* AssetsManaging.swift in Sources */,
 				D6A2066827F8A108006A4F52 /* TextureTransformer.swift in Sources */,
+				D681C52527F99D8E00F2DA85 /* FewImagesFewSlidersView.swift in Sources */,
 				D6A2065427F854BC006A4F52 /* ColorTemperatureEditorView.swift in Sources */,
 				D6A2065A27F86C7D006A4F52 /* ChangeImageColorTemperatureUseCase.swift in Sources */,
+				D681C51C27F97FE500F2DA85 /* FewImagesFewSlidersImageProcessingViewModel.swift in Sources */,
 				D6A2064127F84F65006A4F52 /* MetallicApp.swift in Sources */,
+				D6A2067027F8F783006A4F52 /* GaussianBlurProcessor.swift in Sources */,
 				D6A2066C27F8ACAC006A4F52 /* TextureProcessingError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

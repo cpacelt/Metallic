@@ -34,7 +34,7 @@ final class ColorTemperatureEditorViewModelImpl<ChangeImageColorTemperatureUC: C
     @Published private var cgImagePlaceHolder: CGImage
     @Published private var sliderValue: Float = 0
     @Published private(set) var imageScale: CGFloat = 1.0
-    @Published private(set) var valueRange: ClosedRange<Float> = 0...10
+    @Published private(set) var valueRange: ClosedRange<Float> = 0...100
     
     @Published private(set) var headerTitle: String = "Let's go!\nChange the picture's  color temperature!"
     @Published private(set) var sliderMinTitle: String = "❄️"

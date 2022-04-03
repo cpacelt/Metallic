@@ -1,33 +1,28 @@
 //
-//  ChangeImageColorTemperatureUseCase.swift
+//  ApplyGaussianBlurUseCase.swift
 //  Metallic
 //
-//  Created by Роман Путинцев on 02.04.2022.
+//  Created by Роман Путинцев on 03.04.2022.
 //
 
 import Foundation
 import Combine
 import CoreGraphics
 
-// MARK: ImageProcessingError
-enum ImageProcessingError: Error {
-    case fail
-}
 
-// MARK: ChangeImageColorTemperatureUseCase
-protocol ChangeImageColorTemperatureUseCase {
-    func execute(image: CGImage, value: Float)
+// MARK: ApplyGaussianBlurUseCase protocol
+protocol ApplyGaussianBlurUseCase {
+    func execute(image: CGImage, sigma: Float)
     func publisher() -> AnyPublisher<CGImage?, ImageProcessingError>
 }
 
-// MARK: ChangeImageColorTemperatureUseCaseImpl
-final class ChangeImageColorTemperatureUseCaseImpl {
+final class ApplyGaussianBlurUseCaseImpl {
     let subject: PassthroughSubject<CGImage?, ImageProcessingError>
     let renderer: TextureRenderer
-    let processor: ColorTemperatureProcessor
+    let processor: GaussianBlurProcessor
     let transformer: TextureTransformer
     
-    init(renderer: TextureRenderer, processor: ColorTemperatureProcessor, transformer: TextureTransformer) {
+    init(renderer: TextureRenderer, processor: GaussianBlurProcessor, transformer: TextureTransformer) {
         self.subject = PassthroughSubject()
         
         self.renderer = renderer
@@ -38,11 +33,11 @@ final class ChangeImageColorTemperatureUseCaseImpl {
     }
 }
 
-// MARK: ChangeImageColorTemperatureUseCaseImpl extension
-extension ChangeImageColorTemperatureUseCaseImpl: ChangeImageColorTemperatureUseCase {
+// MARK: ApplyGaussianBlurUseCaseImpl extension
+extension ApplyGaussianBlurUseCaseImpl: ApplyGaussianBlurUseCase {
     
-    func execute(image: CGImage, value: Float) {
-        self.processor.tint = value
+    func execute(image: CGImage, sigma: Float) {
+        self.processor.sigma = sigma
         
         do {
             try renderer.redraw(source: image) { redrawedImage in
@@ -60,3 +55,4 @@ extension ChangeImageColorTemperatureUseCaseImpl: ChangeImageColorTemperatureUse
         return subject.eraseToAnyPublisher()
     }
 }
+
