@@ -29,7 +29,7 @@ final class ApplyGaussianBlurUseCaseImpl {
         self.processor = processor
         self.transformer = transformer
         
-        renderer.setContext(transformer: transformer, processor: processor)
+        //renderer.setContext(transformer: transformer, processor: processor)
     }
 }
 
@@ -37,6 +37,7 @@ final class ApplyGaussianBlurUseCaseImpl {
 extension ApplyGaussianBlurUseCaseImpl: ApplyGaussianBlurUseCase {
     
     func execute(image: CGImage, sigma: Float) {
+        self.renderer.setContext(transformer: transformer, processor: processor)
         self.processor.sigma = sigma
         
         do {

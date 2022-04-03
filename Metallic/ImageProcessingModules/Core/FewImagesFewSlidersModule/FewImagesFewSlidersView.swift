@@ -30,6 +30,7 @@ extension FewImagesFewSlidersView: View {
                 .font(.title)
                 .bold()
                 .padding()
+                .padding([.bottom], 30)
             
             ForEach(vm.imageIdentifiers, id: \.self) { id in
                 HStack {

@@ -7,44 +7,47 @@
 
 import SwiftUI
 import MetalKit
+import SwiftUIRouter
 
 struct ContentView: View {
     var body: some View {
         
-        //MARK: Testing
+        
         let device = MTLCreateSystemDefaultDevice()!
         let library = try? device.makeDefaultLibrary(bundle: .main)
-        
         let renderer = try? TextureRenderer(device: device)
-        let processor = try? ColorTemperatureProcessor(library: library!)
-        //let processor = try? GaussianBlurProcessor(library: library!)
         let transformer = TextureTransformer(device: device)
         
-        let uc = ChangeImageColorTemperatureUseCaseImpl(renderer: renderer!,
-                                                        processor: processor!,
-                                                        transformer: transformer)
+        //MARK: Gaussian blur
+        let gaussianBlurProcessor = try? GaussianBlurProcessor(library: library!)
+        let gaussianBlurUC = ApplyGaussianBlurUseCaseImpl(renderer: renderer!,
+                                                          processor: gaussianBlurProcessor!,
+                                                          transformer: transformer)
+        let gaussianBlurVM = GaussianBlurViewModelImpl(applyGaussianBlurUseCase: gaussianBlurUC)
         
-//        let uc = ApplyGaussianBlurUseCaseImpl(renderer: renderer!,
-//                                                        processor: processor!,
-//                                                        transformer: transformer)
-
-       // let vm = ColorTemperatureEditorViewModelImpl<ChangeImageColorTemperatureUseCaseImpl>(uc)
-        let vm = ColorTemperatureEditorViewModelImpl(changeImageColorTemperatureUseCase: uc)
+        //MARK: ColorTemp
+        let colorTempProcessor = try? ColorTemperatureProcessor(library: library!)
+        let colorTempUC = ChangeImageColorTemperatureUseCaseImpl(renderer: renderer!,
+                                                                 processor: colorTempProcessor!,
+                                                                 transformer: transformer)
+        let colorTempVM = ColorTemperatureEditorViewModelImpl(changeImageColorTemperatureUseCase: colorTempUC)
         
-//        ColorTemperatureEditorView(vm: vm) {
-//            Text(vm.formatedSliderValue)
-//        }
-//        let uc = ApplyGaussianBlurUseCaseImpl(renderer: renderer!,
-//                                              processor: processor!,
-//                                              transformer: transformer)
-//        let vm = GaussianBlurViewModelImpl(applyGaussianBlurUseCase: uc)
-//        GaussianBlurView(vm: vm, sliderLabel: {
-//            EmptyView()
-//        })
         
-        ColorTemperatureEditorView(vm: vm, sliderLabel: {
-            EmptyView()
-        })
+        Router {
+            SwitchRoutes {
+                Route("color") {
+                    ColorTemperatureEditorView(vm: colorTempVM) { EmptyView() }
+                }
+                
+                Route("gauss") {
+                    GaussianBlurView(vm: gaussianBlurVM) { EmptyView() }
+                }
+            }
+            
+            Navigate(to: "/gauss")
+        }
+        
+        
         
     }
 }

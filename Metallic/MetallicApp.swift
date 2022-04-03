@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIRouter
 
 @main
 struct MetallicApp: App {

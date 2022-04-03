@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
-
+import SwiftUIRouter
 
 // MARK: GaussianBlurView
 struct GaussianBlurView<GaussianBlurVM: GaussianBlurViewModel,
                         SliderLabel: View>
 {
+    @EnvironmentObject var navigator: Navigator
     @ObservedObject var vm: GaussianBlurVM.GeneralVM
     let sliderLabel: () -> SliderLabel
     
@@ -24,6 +25,18 @@ struct GaussianBlurView<GaussianBlurVM: GaussianBlurViewModel,
 // MARK: View extension
 extension GaussianBlurView: View {
     var body: some View {
+        
+        Spacer()
         FewImagesFewSlidersView(vm: vm, sliderLabel: { EmptyView() })
+        
+        Spacer()
+        NavLink(to: "/color") {
+            Text("One more thing")
+                .foregroundColor(.white)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                )
+        }
     }
 }

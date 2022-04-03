@@ -12,6 +12,7 @@
 		D681C52027F9913000F2DA85 /* GaussianBlurViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681C51F27F9913000F2DA85 /* GaussianBlurViewModel.swift */; };
 		D681C52227F994C700F2DA85 /* GaussianBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681C52127F994C700F2DA85 /* GaussianBlurView.swift */; };
 		D681C52527F99D8E00F2DA85 /* FewImagesFewSlidersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681C52427F99D8E00F2DA85 /* FewImagesFewSlidersView.swift */; };
+		D681C52827F9B9B000F2DA85 /* SwiftUIRouter in Frameworks */ = {isa = PBXBuildFile; productRef = D681C52727F9B9B000F2DA85 /* SwiftUIRouter */; };
 		D6A2064127F84F65006A4F52 /* MetallicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2064027F84F65006A4F52 /* MetallicApp.swift */; };
 		D6A2064327F84F65006A4F52 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2064227F84F65006A4F52 /* ContentView.swift */; };
 		D6A2064527F84F68006A4F52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6A2064427F84F68006A4F52 /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D681C52827F9B9B000F2DA85 /* SwiftUIRouter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +258,9 @@
 			dependencies = (
 			);
 			name = Metallic;
+			packageProductDependencies = (
+				D681C52727F9B9B000F2DA85 /* SwiftUIRouter */,
+			);
 			productName = Metallic;
 			productReference = D6A2063D27F84F65006A4F52 /* Metallic.app */;
 			productType = "com.apple.product-type.application";
@@ -284,6 +289,9 @@
 				Base,
 			);
 			mainGroup = D6A2063427F84F65006A4F52;
+			packageReferences = (
+				D681C52627F9B9B000F2DA85 /* XCRemoteSwiftPackageReference "SwiftUIRouter" */,
+			);
 			productRefGroup = D6A2063E27F84F65006A4F52 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -531,6 +539,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D681C52627F9B9B000F2DA85 /* XCRemoteSwiftPackageReference "SwiftUIRouter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/frzi/SwiftUIRouter";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D681C52727F9B9B000F2DA85 /* SwiftUIRouter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D681C52627F9B9B000F2DA85 /* XCRemoteSwiftPackageReference "SwiftUIRouter" */;
+			productName = SwiftUIRouter;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D6A2063527F84F65006A4F52 /* Project object */;
 }

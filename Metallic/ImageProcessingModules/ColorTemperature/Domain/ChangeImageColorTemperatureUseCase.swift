@@ -34,7 +34,7 @@ final class ChangeImageColorTemperatureUseCaseImpl {
         self.processor = processor
         self.transformer = transformer
         
-        renderer.setContext(transformer: transformer, processor: processor)
+        //renderer.setContext(transformer: transformer, processor: processor)
     }
 }
 
@@ -42,6 +42,7 @@ final class ChangeImageColorTemperatureUseCaseImpl {
 extension ChangeImageColorTemperatureUseCaseImpl: ChangeImageColorTemperatureUseCase {
     
     func execute(image: CGImage, value: Float) {
+        renderer.setContext(transformer: transformer, processor: processor)
         self.processor.tint = value
         
         do {

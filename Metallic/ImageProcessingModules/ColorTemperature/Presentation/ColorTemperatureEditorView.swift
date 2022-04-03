@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIRouter
 
 // MARK: GaussianBlurView
 struct ColorTemperatureEditorView<ColorTemperatureEditorVM: ColorTemperatureEditorViewModel,
@@ -23,6 +24,18 @@ struct ColorTemperatureEditorView<ColorTemperatureEditorVM: ColorTemperatureEdit
 // MARK: View extension
 extension ColorTemperatureEditorView: View {
     var body: some View {
+        
+        Spacer()
         FewImagesFewSlidersView(vm: vm, sliderLabel: { EmptyView() })
+        
+        Spacer()
+        NavLink(to: "/gauss") {
+            Text("One more thing")
+                .foregroundColor(.white)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                )
+        }
     }
 }
