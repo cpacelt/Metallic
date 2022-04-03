@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// MARK: FewImagesFewSlidersImageProcessingViewModel
 protocol FewImagesFewSlidersImageProcessingViewModel: ObservableObject {
     associatedtype ImageId: Hashable
     associatedtype SliderId: Hashable
@@ -30,5 +31,4 @@ protocol FewImagesFewSlidersImageProcessingViewModel: ObservableObject {
     
     func slidersOnEndedHandlers(for id: SliderId) -> SliderOnEndedHandler
     func sliderOnChangesHandlers(for id: SliderId) -> SliderOnChangedHandler
-    
 }

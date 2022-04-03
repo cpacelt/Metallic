@@ -182,8 +182,8 @@
 		D6A2065127F85398006A4F52 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				D6A2065327F854BC006A4F52 /* ColorTemperatureEditorView.swift */,
 				D6A2065527F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift */,
+				D6A2065327F854BC006A4F52 /* ColorTemperatureEditorView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";

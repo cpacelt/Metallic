@@ -28,6 +28,7 @@ extension FewImagesFewSlidersView: View {
         VStack {
             Text(vm.headerTitle)
                 .font(.title)
+                .bold()
                 .padding()
             
             ForEach(vm.imageIdentifiers, id: \.self) { id in
@@ -36,6 +37,7 @@ extension FewImagesFewSlidersView: View {
                           scale: vm.imageScale(for: id))
                         .resizable()
                         .scaledToFit()
+                        .cornerRadius(10.0)
                         .padding()
                 }
             }

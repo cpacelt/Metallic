@@ -11,59 +11,48 @@ import Combine
 
 // MARK: ColorTemperatureEditorViewModel protocol
 protocol ColorTemperatureEditorViewModel: ObservableObject {
-    var image: CGImage { get }
-    var imageScale: CGFloat { get }
-    var valueRange: ClosedRange<Float> { get }
-    var sliderValuePublisher: Binding<Float> { get }
-    var headerTitle: String { get }
-    var sliderMinTitle: String { get }
-    var sliderMaxTitle: String { get }
-    var formatedSliderValue: String { get }
+    associatedtype GeneralVM: FewImagesFewSlidersImageProcessingViewModel
+    associatedtype ChangeColorTemperatureUC: ChangeImageColorTemperatureUseCase
     
-    func onSliderEditingEndedHandler(isEnded: Bool) -> Void
+    var generalVM:  GeneralVM { get }
+    var changeColorTemperatureUseCase: ChangeColorTemperatureUC { get }
 }
 
 // MARK: ColorTemperatureEditorViewModelImpl
 final class ColorTemperatureEditorViewModelImpl<ChangeImageColorTemperatureUC: ChangeImageColorTemperatureUseCase> {
     
-    //MARK: UseCases
-    private let changeImageColorTemperatureUseCase: ChangeImageColorTemperatureUC
-    private let numberFormatter: NumberFormatter = .init()
+    let generalVM: FewImagesFewSlidersImageProcessingViewModelImpl
+    let changeColorTemperatureUseCase: ChangeImageColorTemperatureUC
+    let sliderOnEnded: (Bool) -> Void
+    let sliderOnChanged: (CGImage, Float) -> Void
     
-    @Published private var cgImage: CGImage?
-    @Published private var cgImagePlaceHolder: CGImage
-    @Published private var sliderValue: Float = 0
-    @Published private(set) var imageScale: CGFloat = 1.0
-    @Published private(set) var valueRange: ClosedRange<Float> = 0...100
-    
-    @Published private(set) var headerTitle: String = "Let's go!\nChange the picture's  color temperature!"
-    @Published private(set) var sliderMinTitle: String = "❄️"
-    @Published private(set) var sliderMaxTitle: String = "🔥"
-    
-    var image: CGImage {
-        cgImage ?? cgImagePlaceHolder
-    }
-    
-    var formatedSliderValue: String {
-        let nsNumber = NSNumber(value: sliderValue)
-        return numberFormatter.string(from: nsNumber) ?? "0.0"
-    }
-    
-    var sliderValuePublisher: Binding<Float> {
-        .init(get: { self.sliderValue },
-              set: { newValue in self.sliderValue = newValue })
-    }
-    
-    // MARK: Init
-    init(_ changeImageColorTemperatureUseCase: ChangeImageColorTemperatureUC) {
-        self.changeImageColorTemperatureUseCase = changeImageColorTemperatureUseCase
-        self.cgImagePlaceHolder = .cgImagePlaceholder
+    init(changeImageColorTemperatureUseCase: ChangeImageColorTemperatureUC) {
         
-        self.changeImageColorTemperatureUseCase
-            .publisher()
-            .replaceError(with: cgImagePlaceHolder)
-            .receive(on: RunLoop.main)
-            .assign(to: &$cgImage)
+        let sliderOnEnded = {(isEnded: Bool) -> Void in
+            //print("sliderOnEnded")
+        }
+        
+        let sliderOnChanged = {(cgImage: CGImage, sigma: Float) -> Void in
+            //print("\(sigma)")
+            changeImageColorTemperatureUseCase.execute(image: .cgImagePlaceholder, value: sigma)
+        }
+        
+        let useCasePublisher = changeImageColorTemperatureUseCase.publisher()
+        
+        self.sliderOnEnded = sliderOnEnded
+        self.sliderOnChanged = sliderOnChanged
+        self.changeColorTemperatureUseCase = changeImageColorTemperatureUseCase
+        
+        
+        self.generalVM = FewImagesFewSlidersImageProcessingViewModelImpl(headerTitle: "Let's change image's color temperature!",
+                                                            imagesCount: 1,
+                                                            valueRanges: [0...30.0],
+                                                            slidersMinMaxTitles: [("❄️", "🔥")],
+                                                            slidersOnEndedHandlers: [sliderOnEnded],
+                                                            sliderOnChangesHandlers: [sliderOnChanged],
+                                                            processedImagesPublishers: [useCasePublisher])
+        
+        
     }
     
 }
@@ -71,9 +60,6 @@ final class ColorTemperatureEditorViewModelImpl<ChangeImageColorTemperatureUC: C
 // MARK: ColorTemperatureEditorViewModelImpl extension
 extension ColorTemperatureEditorViewModelImpl: ColorTemperatureEditorViewModel {
     
-    func onSliderEditingEndedHandler(isEnded: Bool) {
-        changeImageColorTemperatureUseCase.execute(image: cgImagePlaceHolder, value: sliderValue)
-    }
 }
 
 extension ColorTemperatureEditorViewModelImpl: ObservableObject {}
