@@ -33,8 +33,10 @@ struct ContentView: View {
 //        ColorTemperatureEditorView(vm: vm) {
 //            Text(vm.formatedSliderValue)
 //        }
-        
-        let vm = GaussianBlurViewModelImpl()
+        let uc = ApplyGaussianBlurUseCaseImpl(renderer: renderer!,
+                                              processor: processor!,
+                                              transformer: transformer)
+        let vm = GaussianBlurViewModelImpl(applyGaussianBlurUseCase: uc)
         GaussianBlurView(vm: vm, sliderLabel: {
             EmptyView()
         })

@@ -7,25 +7,31 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
+//MARK: FewImagesFewSlidersImageProcessingViewModelImpl
 final class FewImagesFewSlidersImageProcessingViewModelImpl {
     var headerTitle: String
     
-    var images: [CGImage]
+    @Published var images: [CGImage]
     var imageScales: [CGFloat]
     var valueRanges: [ClosedRange<Float>]
     var sliderValues: [Float]
     var sliderValuePublishers: [Binding<Float>] = []
     var slidersMinMaxTitles: [(min: String, max: String)]
     var slidersOnEndedHandlers: [(Bool) -> Void]
-    var sliderOnChangesHandlers: [(Float) -> Void]
+    var sliderOnChangesHandlers: [(CGImage, Float) -> Void]
     
+    var storage: Set<AnyCancellable> = []
+    
+    // MARK: Init
     init(headerTitle: String,
          imagesCount: Int,
          valueRanges: [ClosedRange<Float>],
          slidersMinMaxTitles: [(min: String, max: String)],
          slidersOnEndedHandlers: [(Bool) -> Void],
-         sliderOnChangesHandlers: [(Float) -> Void]
+         sliderOnChangesHandlers: [(CGImage, Float) -> Void],
+         processedImagesPublishers: [AnyPublisher<CGImage?, ImageProcessingError>]
     ) {
         self.headerTitle = headerTitle
         
@@ -41,16 +47,32 @@ final class FewImagesFewSlidersImageProcessingViewModelImpl {
         self.sliderValues = Array(repeating: .zero, count: slidersCount)
         
         (0..<slidersCount).forEach({
-            index in sliderValuePublishers.append(prerarePublisher(for: index))
+            index in sliderValuePublishers.append(prerareBinding(for: index))
+        })
+        
+        (0..<imagesCount).forEach({ index in processedImagesPublishers[index]
+                .receive(on: RunLoop.main)
+                .sink(receiveCompletion: { _ in return},
+                      receiveValue: { cgImage in
+                    self.images[index] = cgImage ?? .cgImagePlaceholder
+                })
+                .store(in: &storage)
+        })
+        
+    }
+    
+    func prerareBinding(for id: Int) -> Binding<Float> {
+        .init(get: { self.sliderValues[id] },
+              set: { newValue in
+            let image = self.image(for: id)
+            self.sliderValues[id] = newValue
+            self.sliderOnChangesHandlers(for: id)(image, newValue)
         })
     }
     
-    func prerarePublisher(for id: Int) -> Binding<Float> {
-        .init(get: { self.sliderValues[id] },
-              set: { newValue in self.sliderValues[id] = newValue })
-    }
 }
 
+//MARK: FewImagesFewSlidersImageProcessingViewModel extension
 extension FewImagesFewSlidersImageProcessingViewModelImpl: FewImagesFewSlidersImageProcessingViewModel {
     
     typealias ImageId = Int
@@ -85,7 +107,7 @@ extension FewImagesFewSlidersImageProcessingViewModelImpl: FewImagesFewSlidersIm
         let formatter = NumberFormatter()
         let number = NSNumber(value: sliderValues[id])
         let str = formatter.string(from: number)
-
+        
         return str ?? "0.0"
     }
     

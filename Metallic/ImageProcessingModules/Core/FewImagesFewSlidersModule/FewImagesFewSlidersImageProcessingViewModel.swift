@@ -12,7 +12,7 @@ protocol FewImagesFewSlidersImageProcessingViewModel: ObservableObject {
     associatedtype ImageId: Hashable
     associatedtype SliderId: Hashable
     
-    typealias SliderOnChangedHandler = (Float) -> Void
+    typealias SliderOnChangedHandler = (CGImage, Float) -> Void
     typealias SliderOnEndedHandler = (Bool) -> Void
     
     var headerTitle: String { get }

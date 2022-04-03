@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D681C51C27F97FE500F2DA85 /* FewImagesFewSlidersImageProcessingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681C51B27F97FE500F2DA85 /* FewImagesFewSlidersImageProcessingViewModel.swift */; };
-		D681C51E27F981B100F2DA85 /* GeneralImageProcessigViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681C51D27F981B100F2DA85 /* GeneralImageProcessigViewModelImpl.swift */; };
+		D681C51E27F981B100F2DA85 /* FewImagesFewSlidersImageProcessingViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681C51D27F981B100F2DA85 /* FewImagesFewSlidersImageProcessingViewModelImpl.swift */; };
 		D681C52027F9913000F2DA85 /* GaussianBlurViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681C51F27F9913000F2DA85 /* GaussianBlurViewModel.swift */; };
 		D681C52227F994C700F2DA85 /* GaussianBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681C52127F994C700F2DA85 /* GaussianBlurView.swift */; };
 		D681C52527F99D8E00F2DA85 /* FewImagesFewSlidersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D681C52427F99D8E00F2DA85 /* FewImagesFewSlidersView.swift */; };
@@ -32,7 +32,7 @@
 
 /* Begin PBXFileReference section */
 		D681C51B27F97FE500F2DA85 /* FewImagesFewSlidersImageProcessingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FewImagesFewSlidersImageProcessingViewModel.swift; sourceTree = "<group>"; };
-		D681C51D27F981B100F2DA85 /* GeneralImageProcessigViewModelImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralImageProcessigViewModelImpl.swift; sourceTree = "<group>"; };
+		D681C51D27F981B100F2DA85 /* FewImagesFewSlidersImageProcessingViewModelImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FewImagesFewSlidersImageProcessingViewModelImpl.swift; sourceTree = "<group>"; };
 		D681C51F27F9913000F2DA85 /* GaussianBlurViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GaussianBlurViewModel.swift; path = Metallic/ImageProcessingModules/GaussianBlur/GaussianBlurViewModel.swift; sourceTree = SOURCE_ROOT; };
 		D681C52127F994C700F2DA85 /* GaussianBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaussianBlurView.swift; sourceTree = "<group>"; };
 		D681C52427F99D8E00F2DA85 /* FewImagesFewSlidersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FewImagesFewSlidersView.swift; sourceTree = "<group>"; };
@@ -70,8 +70,8 @@
 		D681C51727F97D0D00F2DA85 /* GaussianBlur */ = {
 			isa = PBXGroup;
 			children = (
-				D681C51927F97D2500F2DA85 /* Presentation */,
 				D681C51827F97D1F00F2DA85 /* Domain */,
+				D681C51927F97D2500F2DA85 /* Presentation */,
 			);
 			path = GaussianBlur;
 			sourceTree = "<group>";
@@ -104,7 +104,7 @@
 		D681C52327F99D5700F2DA85 /* FewImagesFewSlidersModule */ = {
 			isa = PBXGroup;
 			children = (
-				D681C51D27F981B100F2DA85 /* GeneralImageProcessigViewModelImpl.swift */,
+				D681C51D27F981B100F2DA85 /* FewImagesFewSlidersImageProcessingViewModelImpl.swift */,
 				D681C51B27F97FE500F2DA85 /* FewImagesFewSlidersImageProcessingViewModel.swift */,
 				D681C52427F99D8E00F2DA85 /* FewImagesFewSlidersView.swift */,
 			);
@@ -311,7 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6A2067227F8FB89006A4F52 /* ApplyGaussianBlurUseCase.swift in Sources */,
-				D681C51E27F981B100F2DA85 /* GeneralImageProcessigViewModelImpl.swift in Sources */,
+				D681C51E27F981B100F2DA85 /* FewImagesFewSlidersImageProcessingViewModelImpl.swift in Sources */,
 				D6A2066127F89116006A4F52 /* ColorTemperatureProcessor.swift in Sources */,
 				D6A2065627F85A2F006A4F52 /* ColorTemperatureEditorViewModel.swift in Sources */,
 				D681C52227F994C700F2DA85 /* GaussianBlurView.swift in Sources */,
